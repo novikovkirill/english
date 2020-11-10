@@ -1,7 +1,7 @@
 import React from 'react';
 import Timer from '../timer';
 import Header from '../header';
-import Learning from '../learning';
+import Words from '../words';
 
 const App = () => {
 
@@ -9,7 +9,7 @@ const App = () => {
   	<div>
 	  	<Header />
 		<Timer />
-		<Learning />
+		<Words />
 	</div>
   );
 };

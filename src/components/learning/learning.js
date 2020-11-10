@@ -19,21 +19,19 @@ const Learning = ( {words, getWord} ) => {
   const icon = getIcon(words.isCorrect);
 
   return (
-    <div className={styles.container}>
-      <div>
-	      <Button primary block onClick={() => getWord()}>
-	      	Start training
-	      </Button>
-	      <div className={ styles.word }>{ words.currentWord }</div>
-	      <Input no_display={ !words.currentWord }/>
-	      <div className={ cn(styles.word, { 
-	      	[styles.incorrect]: words.isCorrect === false,
-	      	[styles.correct]: words.isCorrect === true
-	      }) }>
-	      	{ getCorrectText(words.isCorrect) }
-	      	{ icon && <img src={icons[icon]} alt={icon} /> }
-	      </div>
-	   </div>
+    <div className={ styles.container }>
+      <Button primary block onClick={() => getWord()}>
+      	Start training
+      </Button>
+      <div className={ styles.word }>{ words.currentWord }</div>
+      <Input no_display={ !words.currentWord }/>
+      <div className={ cn(styles.word, { 
+      	[styles.incorrect]: words.isCorrect === false,
+      	[styles.correct]: words.isCorrect === true
+      }) }>
+      	{ getCorrectText(words.isCorrect) }
+      	{ icon && <img src={icons[icon]} alt={icon} /> }
+      </div>
     </div>
   );
 };
