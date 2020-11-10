@@ -1,0 +1,25 @@
+.container {
+	clear: right;
+	margin-left: 3%;
+	width: 20%;
+}
+
+.word {
+	align-items: center;
+	display: flex;
+	font-size: 18px;
+	justify-content: center;
+	margin-top: 20px;
+}
+
+.incorrect {
+	color: red;
+}
+
+.correct {
+	color: var(--green);
+}
+
+img {
+	margin-left: 5px;
+}

@@ -1,0 +1,10 @@
+.no_display {
+	display: none;
+}
+
+.input {
+	border-radius: 8px;
+	height: 40px;
+	margin-top: 20px;
+	width: 100%;
+}
