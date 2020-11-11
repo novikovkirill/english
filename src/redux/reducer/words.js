@@ -1,8 +1,8 @@
 import { GET_WORD, CHECK_WORD, CLEAR_CORRECT } from '../constants';
-import { words } from '../../fixtures';
+import { words as entities} from '../../fixtures';
 
 const initialState = {
-  words,
+  entities,
   currentWord: null,
   translation: null,
   isCorrect: null
@@ -13,11 +13,11 @@ export default (state = initialState, action) => {
 
   switch (type) {
   	case GET_WORD:
-      const index = Math.floor(state.words.length*Math.random());
+      const index = Math.floor(state.entities.length*Math.random());
   		return {
   			...state,
-  			currentWord: state.words[index]['english'],
-        translation: state.words[index]['russian'],
+  			currentWord: state.entities[index]['english'],
+        translation: state.entities[index]['russian'],
         isCorrect: null
   		}
     case CHECK_WORD:

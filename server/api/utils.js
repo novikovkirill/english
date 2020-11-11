@@ -1,6 +1,2 @@
-const reply = (res, body, timeout = 1000, status = 200) =>
-  setTimeout(() => {
-    res.status(status).json(body);
-  }, timeout);
-
+const reply = (res, body, status = 200) => res.status(status).json(body);
 module.exports = { reply };

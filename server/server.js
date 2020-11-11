@@ -13,10 +13,9 @@ app.use(bodyParser.json());
 app.use('/api', api);
 
 app.listen(port, 'localhost', function (err) {
-  if (err) {
-    console.log(err);
-    return;
-  }
-
+  	if (err) {
+    	console.log(err);
+    	return;
+  	}
   console.log('Listening at http://localhost:' + port);
 });
