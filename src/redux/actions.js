@@ -6,7 +6,8 @@ import {
   CHECK_WORD,
   CLEAR_INTERVAL,
   SECOND,
-  CLEAR_CORRECT
+  CLEAR_CORRECT,
+  LOAD_WORDS
 } from './constants';
 
 export const startTimer = () => async(dispatch, getState) => {
@@ -21,6 +22,11 @@ export const startTimer = () => async(dispatch, getState) => {
 
 export const stopTimer = () => ({type: STOP_TIMER});
 
+export const loadWords = () => ({
+  type: LOAD_WORDS,
+  CallAPI: '/api/words',
+});
+
 export const getWord = () => ({type: GET_WORD});
 
 export const checkWord = (word) => async(dispatch, getState) => {
@@ -29,4 +35,4 @@ export const checkWord = (word) => async(dispatch, getState) => {
   setTimeout(() => {
     dispatch({type: isCorrect ? GET_WORD : CLEAR_CORRECT});
   }, CLEAR_INTERVAL);
-}
+};

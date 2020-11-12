@@ -7,3 +7,9 @@ export const CLEAR_CORRECT = 'CLEAR_CORRECT';
 
 export const SECOND = 1000;
 export const CLEAR_INTERVAL = 2500;
+
+export const REQUEST = '_REQUEST';
+export const SUCCESS = '_SUCCESS';
+export const FAILURE = '_FAILURE';
+
+export const LOAD_WORDS = 'LOAD_WORDS';

@@ -1,17 +1,36 @@
-import { GET_WORD, CHECK_WORD, CLEAR_CORRECT } from '../constants';
-import { words as entities} from '../../fixtures';
+import { GET_WORD, CHECK_WORD, CLEAR_CORRECT, LOAD_WORDS, REQUEST, SUCCESS, FAILURE } from '../constants';
 
 const initialState = {
-  entities,
+  entities: [],
   currentWord: null,
   translation: null,
   isCorrect: null
 }
 
 export default (state = initialState, action) => {
-  const { type, payload } = action;
+  const { type, payload, response, error } = action;
 
   switch (type) {
+    case LOAD_WORDS + REQUEST:
+      return {
+        ...state,
+        loading: true,
+        error: null,
+      };
+    case LOAD_WORDS + SUCCESS:
+      return {
+        ...state,
+        entities: response,
+        loading: false,
+        loaded: true,
+      };
+    case LOAD_WORDS + FAILURE:
+      return {
+        ...state,
+        loading: false,
+        loaded: false,
+        error,
+      };
   	case GET_WORD:
       const index = Math.floor(state.entities.length*Math.random());
   		return {
