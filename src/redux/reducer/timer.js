@@ -1,4 +1,4 @@
-import { START_TIMER, INCREASE_TIMER, STOP_TIMER } from '../constants';
+import { START_TIMER, INCREASE_TIMER, LOG_TIMER, REQUEST } from '../constants';
 
 const initialState = {
 	seconds: 0, 
@@ -20,7 +20,7 @@ export default (state = initialState, action) => {
       		...state,
       		seconds: state.seconds + 1
       	}
-    case STOP_TIMER: 
+    case LOG_TIMER + REQUEST: 
       clearInterval(state.timerId);
     	return {
   			seconds: 0, 

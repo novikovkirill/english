@@ -1,17 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { startTimer, stopTimer } from '../../redux/actions';
+import { startTimer, logTimer } from '../../redux/actions';
 import moment from 'moment';
 import Button from '../button';
 import styles from './timer.module.css';
 
-const Timer = ( { timer, startTimer, stopTimer } ) => {
+const Timer = ( { timer, startTimer, logTimer } ) => {
 
   	return (
 			<div className={styles.container}>
 				<div>
 					<Button primary block active={timer.started} onClick= {
-						() => timer.started ? stopTimer() : startTimer() 
+						() => timer.started ? logTimer(timer.seconds) : startTimer() 
 					}>
 						{timer.started ? 'Stop timer' : 'Start timer'}
 					</Button>
@@ -27,7 +27,7 @@ const formatTime = (seconds) => {
 
 const mapDispatchToProps = {
   startTimer,
-  stopTimer
+  logTimer
 };
 
 export default connect( 

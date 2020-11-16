@@ -1,6 +1,6 @@
 import {
 	START_TIMER,
-	STOP_TIMER,
+	LOG_TIMER,
 	INCREASE_TIMER,
   GET_WORD,
   CHECK_WORD,
@@ -20,7 +20,11 @@ export const startTimer = () => async(dispatch, getState) => {
     });
 };
 
-export const stopTimer = () => ({type: STOP_TIMER});
+export const logTimer = (seconds) => ({
+  type: LOG_TIMER,
+  CallAPI: 'api/timer',
+  postData: {time: seconds}
+});
 
 export const loadWords = () => ({
   type: LOAD_WORDS,
