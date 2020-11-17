@@ -4,7 +4,8 @@ const initialState = {
   entities: [],
   currentWord: null,
   translation: null,
-  isCorrect: null
+  isCorrect: null,
+  isEmpty: null
 }
 
 export default (state = initialState, action) => {
@@ -32,13 +33,22 @@ export default (state = initialState, action) => {
         error,
       };
   	case GET_WORD:
-      const index = Math.floor(state.entities.length*Math.random());
-  		return {
-  			...state,
-  			currentWord: state.entities[index]['english'],
-        translation: state.entities[index]['russian'],
-        isCorrect: null
-  		}
+      const length = state.entities.length;
+      if (length > 0){
+        const index = Math.floor(length*Math.random());
+    		return {
+    			...state,
+    			currentWord: state.entities[index]['english'],
+          translation: state.entities[index]['russian'],
+          isCorrect: null,
+          isEmpty: false
+    		}
+      } else {
+        return {
+          ...state,
+          isEmpty: true
+        }
+      }
     case CHECK_WORD:
       return {
         ...state,

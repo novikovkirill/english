@@ -32,6 +32,9 @@ const Learning = ( {words, getWord} ) => {
       	{ getCorrectText(words.isCorrect) }
       	{ icon && <img src={icons[icon]} alt={icon} /> }
       </div>
+      <div className={ cn(styles.word, styles.incorrect) }>
+      	{ words.isEmpty ? getEmptyText() : '' }
+      </div>
     </div>
   );
 };
@@ -57,6 +60,8 @@ const getIcon = (correctState) => {
 			return null;
 	}
 }
+
+const getEmptyText = () => 'The dictionary is empty. Please upload the words!'
 
 export default connect( 
 	(state) => ({
