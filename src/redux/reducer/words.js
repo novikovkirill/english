@@ -1,4 +1,4 @@
-import { GET_WORD, CHECK_WORD, CLEAR_CORRECT, LOAD_WORDS, REQUEST, SUCCESS, FAILURE } from '../constants';
+import { GET_WORD, CHECK_WORD, CLEAR_CORRECT, LOAD_WORDS, REQUEST, SUCCESS, FAILURE, CLEAR_EMPTY } from '../constants';
 
 const initialState = {
   entities: [],
@@ -33,21 +33,19 @@ export default (state = initialState, action) => {
         error,
       };
   	case GET_WORD:
-      const length = state.entities.length;
-      if (length > 0){
-        const index = Math.floor(length*Math.random());
-    		return {
-    			...state,
-    			currentWord: state.entities[index]['english'],
-          translation: state.entities[index]['russian'],
-          isCorrect: null,
-          isEmpty: false
-    		}
-      } else {
-        return {
-          ...state,
-          isEmpty: true
-        }
+      const { isEmpty } = payload;      
+      const index = isEmpty ? null: Math.floor(state.entities.length*Math.random());
+  		return {
+  			...state,
+  			currentWord: isEmpty ? null : state.entities[index]['english'],
+        translation: isEmpty ? null : state.entities[index]['russian'],
+        isCorrect: null,
+        isEmpty
+  		}
+    case CLEAR_EMPTY: 
+      return {
+        ...state,
+        isEmpty: null
       }
     case CHECK_WORD:
       return {

@@ -8,7 +8,8 @@ import {
   SECOND,
   CLEAR_CORRECT,
   LOAD_WORDS,
-  UPLOAD_WORD
+  UPLOAD_WORD,
+  CLEAR_EMPTY
 } from './constants';
 
 export const startTimer = () => async(dispatch, getState) => {
@@ -32,7 +33,15 @@ export const loadWords = () => ({
   CallAPI: '/api/words',
 });
 
-export const getWord = () => ({type: GET_WORD});
+export const getWord = () => async(dispatch, getState) => {
+  const isEmpty = getState().words.entities.length === 0;
+  dispatch({type: GET_WORD, payload: { isEmpty }});
+  if (isEmpty){
+    setTimeout(() => {
+      dispatch({type: CLEAR_EMPTY});
+    }, CLEAR_INTERVAL)
+  }
+}
 
 export const checkWord = (word) => async(dispatch, getState) => {
   const isCorrect = word.toLowerCase().trim() === getState().words.translation.toLowerCase().trim()
