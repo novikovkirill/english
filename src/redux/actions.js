@@ -7,7 +7,8 @@ import {
   CLEAR_INTERVAL,
   SECOND,
   CLEAR_CORRECT,
-  LOAD_WORDS
+  LOAD_WORDS,
+  UPLOAD_WORD
 } from './constants';
 
 export const startTimer = () => async(dispatch, getState) => {
@@ -40,3 +41,9 @@ export const checkWord = (word) => async(dispatch, getState) => {
     dispatch({type: isCorrect ? GET_WORD : CLEAR_CORRECT});
   }, CLEAR_INTERVAL);
 };
+
+export const uploadWord = (word) => ({
+  type: UPLOAD_WORD,
+  CallAPI: 'api/words',
+  postData: { word }
+}) 

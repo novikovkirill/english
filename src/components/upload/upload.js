@@ -1,17 +1,20 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import Button from '../button';
 import useForm from '../../hooks/use-form';
 
-import styles from './upload.module.css'
+import styles from './upload.module.css';
+
+import { uploadWord } from '../../redux/actions';
 
 const INITIAL_VALUES = { english: '', russian: '' };
 
-const Upload = () => {
-  const { handlers, reset } = useForm(INITIAL_VALUES);
+const Upload = ({ onSubmit }) => {
+  const { values, handlers, reset } = useForm(INITIAL_VALUES);
 
   const handleSubmit = (ev) => {
     ev.preventDefault();
-    //onSubmit(values);
+    onSubmit(values);
     reset();
   };
 
@@ -40,4 +43,6 @@ const Upload = () => {
   );
 };
 
-export default Upload;
+export default connect(null, (dispatch, props) => ({
+  onSubmit: (word) => dispatch(uploadWord(word)),
+}))(Upload);

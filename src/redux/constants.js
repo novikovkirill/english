@@ -13,3 +13,4 @@ export const SUCCESS = '_SUCCESS';
 export const FAILURE = '_FAILURE';
 
 export const LOAD_WORDS = 'LOAD_WORDS';
+export const UPLOAD_WORD = 'UPLOAD_WORD';
