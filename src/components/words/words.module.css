@@ -4,3 +4,34 @@
 	justify-content: space-between;
 	margin: 3%;
 }
+
+.word {
+	align-items: center;
+	display: flex;
+	font-size: 18px;
+	justify-content: center;
+	margin-top: 20px;
+}
+
+.incorrect {
+	color: red;
+}
+
+.correct {
+	color: var(--green);
+}
+
+.learning-container {
+	width: 20%;
+}
+
+img {
+	margin-left: 5px;
+}
+
+.input {
+	border-radius: 8px;
+	height: 40px;
+	margin-bottom: 20px;
+	width: 100%;
+}

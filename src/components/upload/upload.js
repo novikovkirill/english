@@ -3,13 +3,14 @@ import { connect } from 'react-redux';
 import Button from '../button';
 import useForm from '../../hooks/use-form';
 
-import styles from './upload.module.css';
+import styles from '../words/words.module.css';
+import cn from 'classnames';
 
 import { uploadWord } from '../../redux/actions';
 
 const INITIAL_VALUES = { english: '', russian: '' };
 
-const Upload = ({ onSubmit }) => {
+const Upload = ({ words, onSubmit }) => {
   const { values, handlers, reset } = useForm(INITIAL_VALUES);
 
   const handleSubmit = (ev) => {
@@ -39,10 +40,16 @@ const Upload = ({ onSubmit }) => {
           </Button>
         </div>
       </form>
+      <div className={ cn(styles.word, styles.correct) }>
+        { words.uploadSuccess ? 'Uploaded succesfully!' : '' }
+      </div>
   	</div>
   );
 };
 
-export default connect(null, (dispatch, props) => ({
-  onSubmit: (word) => dispatch(uploadWord(word)),
+export default connect( (state) => ({
+    words: state.words
+  }),
+  (dispatch, props) => ({ 
+    onSubmit: (word) => dispatch(uploadWord(word))
 }))(Upload);

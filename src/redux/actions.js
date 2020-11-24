@@ -47,7 +47,8 @@ export const checkWord = (word) => async(dispatch, getState) => {
   const isCorrect = word.toLowerCase().trim() === getState().words.translation.toLowerCase().trim()
   dispatch({type: CHECK_WORD, payload: { isCorrect }});
   setTimeout(() => {
-    dispatch({type: isCorrect ? GET_WORD : CLEAR_CORRECT});
+    //если мы проверяем слово, то оно есть, значит база заведомо непустая
+    dispatch({type: isCorrect ? GET_WORD : CLEAR_CORRECT, payload: {isEmpty: false}});
   }, CLEAR_INTERVAL);
 };
 

@@ -15,3 +15,4 @@ export const FAILURE = '_FAILURE';
 export const LOAD_WORDS = 'LOAD_WORDS';
 export const UPLOAD_WORD = 'UPLOAD_WORD';
 export const CLEAR_EMPTY = 'CLEAR_EMPTY';
+export const CLEAR_UPLOAD = 'CLEAR_UPLOAD';

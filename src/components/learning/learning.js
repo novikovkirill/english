@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { getWord } from '../../redux/actions';
 import Button from '../button';
-import styles from './learning.module.css';
+import styles from '../words/words.module.css';
 import Input from '../input';
 import cn from 'classnames';
 

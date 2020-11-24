@@ -1,11 +1,27 @@
-import { GET_WORD, CHECK_WORD, CLEAR_CORRECT, LOAD_WORDS, REQUEST, SUCCESS, FAILURE, CLEAR_EMPTY } from '../constants';
+import { 
+  GET_WORD, 
+  CHECK_WORD, 
+  CLEAR_CORRECT, 
+  LOAD_WORDS, 
+  REQUEST, 
+  SUCCESS, 
+  FAILURE, 
+  CLEAR_EMPTY, 
+  UPLOAD_WORD, 
+  CLEAR_UPLOAD 
+} from '../constants';
 
 const initialState = {
   entities: [],
   currentWord: null,
   translation: null,
   isCorrect: null,
-  isEmpty: null
+  isEmpty: null,
+  loading: null,
+  loaded: null,
+  error: null,
+  uploadSuccess: null,
+  uploadError: null
 }
 
 export default (state = initialState, action) => {
@@ -58,6 +74,22 @@ export default (state = initialState, action) => {
         isCorrect: null
       }
     }
+    case UPLOAD_WORD + SUCCESS: 
+      return {
+          ...state,
+          uploadSuccess: true
+      };
+    case UPLOAD_WORD + FAILURE: 
+      return {
+        ...state,
+        uploadError: true
+      }
+    case CLEAR_UPLOAD: 
+      return {
+        ...state,
+        uploadError: null,
+        uploadSuccess: null
+      }
     default:
       return state;
   }
