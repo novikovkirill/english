@@ -9,10 +9,13 @@ import {
   CLEAR_CORRECT,
   LOAD_WORDS,
   UPLOAD_WORD,
-  CLEAR_EMPTY
+  CLEAR_EMPTY,
+  FAILURE,
+  SUCCESS
 } from './constants';
+import createPostParams from './middleware/api'
 
-export const startTimer = () => async(dispatch, getState) => {
+export const startTimer = () => async(dispatch) => {
 	const timerId = setInterval(()=> {
       dispatch({type: INCREASE_TIMER});
     }, SECOND);
@@ -41,7 +44,7 @@ export const getWord = () => async(dispatch, getState) => {
       dispatch({type: CLEAR_EMPTY});
     }, CLEAR_INTERVAL)
   }
-}
+};
 
 export const checkWord = (word) => async(dispatch, getState) => {
   const isCorrect = word.toLowerCase().trim() === getState().words.translation.toLowerCase().trim()
@@ -52,8 +55,16 @@ export const checkWord = (word) => async(dispatch, getState) => {
   }, CLEAR_INTERVAL);
 };
 
-export const uploadWord = (word) => ({
-  type: UPLOAD_WORD,
-  CallAPI: 'api/words',
-  postData: { word }
-}) 
+export const uploadWord = (word) => async(dispatch) =>{
+  try {
+    const response = await fetch('api/words', createPostParams({ word })).then(async (res) => {
+        const data = await res.json();
+        if (res.ok) return data;
+        throw data;
+    });
+    dispatch({ type: UPLOAD_WORD + SUCCESS, response });
+    dispatch(loadWords());
+  } catch (error){
+    dispatch({type: UPLOAD_WORD + FAILURE, error})
+  }
+};

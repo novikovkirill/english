@@ -1,6 +1,6 @@
 import { FAILURE, REQUEST, SUCCESS } from '../constants';
 
-const createPostParams = (data) => ({
+export const createPostParams = (data) => ({
   method: 'POST',
   headers: { 'Content-Type': 'application/json' },
   body: JSON.stringify(data),

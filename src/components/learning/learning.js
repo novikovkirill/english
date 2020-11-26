@@ -19,7 +19,7 @@ const Learning = ( {words, getWord} ) => {
   const icon = getIcon(words.isCorrect);
 
   return (
-    <div className={ styles.container }>
+    <div className={ styles.learning_container }>
       <Button primary block onClick={() => getWord()}>
       	Start training
       </Button>
