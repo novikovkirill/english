@@ -1,15 +1,18 @@
 import React from 'react';
-import Timer from '../timer';
+import { Route, Switch } from 'react-router-dom';
 import Header from '../header';
-import Words from '../words';
+import RedirectPage from '../../pages/redirect-page';
+import LearningPage from '../../pages/learning-page';
 
 const App = () => {
 
   return (
   	<div>
 	  	<Header />
-		<Timer />
-		<Words />
+  	  	<Switch>
+		    <Route path="/learning" component={LearningPage} />
+	        <Route path="/" component={RedirectPage} />
+	  	</Switch>
 	</div>
   );
 };
