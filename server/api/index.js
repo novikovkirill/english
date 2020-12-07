@@ -34,6 +34,15 @@ router.post('/words', function (req, res, next) {
   } catch (error) {
     return reply(res, error.toString(), 400);
   }
-})
+});
+
+router.get('/timer', (req, res, next) => {
+	const Datastore = require('nedb');
+	const db = new Datastore({filename : 'timer'});
+	db.loadDatabase();
+	db.find({}, function (err, docs) {
+		reply(res, docs);
+	});
+});
 
 module.exports = router;

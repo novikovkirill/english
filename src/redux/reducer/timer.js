@@ -1,14 +1,38 @@
-import { START_TIMER, INCREASE_TIMER, LOG_TIMER, REQUEST } from '../constants';
+import { START_TIMER, INCREASE_TIMER, LOG_TIMER, REQUEST, LOAD_JOURNAL, SUCCESS, FAILURE } from '../constants';
 
 const initialState = {
 	seconds: 0, 
 	started: false, 
-	timerId: null
+	timerId: null,
+  journal: [],
+  loading: null,
+  loaded: null,
+  error: null
 }
 
 export default (state = initialState, action) => {
-  const { type, payload } = action;
+  const { type, payload, response, error } = action;
   switch (type) {
+    case LOAD_JOURNAL + REQUEST:
+      return {
+        ...state,
+        loading: true,
+        error: null,
+      };
+    case LOAD_JOURNAL + SUCCESS:
+      return {
+        ...state,
+        journal: response,
+        loading: false,
+        loaded: true,
+      };
+    case LOAD_JOURNAL + FAILURE:
+      return {
+        ...state,
+        loading: false,
+        loaded: false,
+        error,
+      };
   	case START_TIMER: 
   		return {
   			...state,

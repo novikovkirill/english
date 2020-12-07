@@ -11,7 +11,8 @@ import {
   UPLOAD_WORD,
   CLEAR_EMPTY,
   FAILURE,
-  SUCCESS
+  SUCCESS,
+  LOAD_JOURNAL
 } from './constants';
 import createPostParams from './middleware/api'
 
@@ -35,6 +36,11 @@ export const loadWords = () => ({
   type: LOAD_WORDS,
   CallAPI: '/api/words',
 });
+
+export const loadJournal = () =>({
+  type: LOAD_JOURNAL,
+  CallAPI: '/api/timer'
+})
 
 export const getWord = () => async(dispatch, getState) => {
   const isEmpty = getState().words.entities.length === 0;
