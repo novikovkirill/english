@@ -24,13 +24,21 @@ const Journal = ({
 
   if (loading || !loaded) return <Loader />;
 
-  return (
-    <ul>
-      {journal.map(({ date, time, _id }) => (
-        <li key={ _id }>{ date } — { time }  min</li>
-      ))}
-    </ul>
-  );
+  if (journal.length > 0){
+
+    return (
+      <ul>
+        {journal.map(({ date, time, _id }) => (
+          <li key={ _id }>{ date } — { time }  min</li>
+        ))}
+      </ul>
+    );
+  } else {
+    return (
+        <div>Your journal is empty yet</div>
+    )
+  }
+
 };
 
 export default connect(
