@@ -33,6 +33,7 @@ const Journal = ({
         ))}
       </ul>
     );
+    
   } else {
     return (
         <div>Your journal is empty yet</div>
